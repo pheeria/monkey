@@ -18,6 +18,7 @@ const (
 	// Operators
 	PLUS = "+"
 	MINUS = "-"
+	ASSIGN = "="
 
 	// Delimiters
 	SEMICOLON = ";"
