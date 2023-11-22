@@ -1,8 +1,8 @@
 package lexer
 
 import (
-	"testing"
 	"monkey/token"
+	"testing"
 )
 
 func TestNextToken(t *testing.T) {
@@ -28,7 +28,7 @@ func TestNextToken(t *testing.T) {
 	`
 
 	tests := []struct {
-		expectedType token.TokenType
+		expectedType    token.TokenType
 		expectedLiteral string
 	}{
 		{token.LET, "let"},
@@ -108,7 +108,7 @@ func TestNextToken(t *testing.T) {
 	}
 
 	l := New(input)
-	
+
 	for i, tt := range tests {
 		tok := l.NextToken()
 

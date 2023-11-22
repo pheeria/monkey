@@ -87,7 +87,7 @@ func (ls *LetStatement) String() string {
 }
 
 type ReturnStatement struct {
-	Token token.Token // the 'return' token
+	Token       token.Token // the 'return' token
 	ReturnValue Expression
 }
 
@@ -112,7 +112,7 @@ func (rs *ReturnStatement) String() string {
 }
 
 type ExpressionStatement struct {
-	Token token.Token // the first token of the expression
+	Token      token.Token // the first token of the expression
 	Expression Expression
 }
 
@@ -145,9 +145,9 @@ func (il *IntegerLiteral) String() string {
 }
 
 type PrefixExpression struct {
-	Token token.Token // The prefix token, e.g. !
+	Token    token.Token // The prefix token, e.g. !
 	Operator string
-	Right Expression
+	Right    Expression
 }
 
 func (pe *PrefixExpression) expressionNode() {}
@@ -168,10 +168,10 @@ func (pe *PrefixExpression) String() string {
 }
 
 type InfixExpression struct {
-	Token token.Token // The operator token, e.g. +
-	Left Expression
+	Token    token.Token // The operator token, e.g. +
+	Left     Expression
 	Operator string
-	Right Expression
+	Right    Expression
 }
 
 func (ie *InfixExpression) expressionNode() {}
@@ -208,8 +208,8 @@ func (b *Boolean) String() string {
 }
 
 type IfExpression struct {
-	Token token.Token // the 'if' token
-	Condition Expression
+	Token       token.Token // the 'if' token
+	Condition   Expression
 	Consequence *BlockStatement
 	Alternative *BlockStatement
 }
@@ -237,7 +237,7 @@ func (ie *IfExpression) String() string {
 }
 
 type BlockStatement struct {
-	Token token.Token // the '{' token
+	Token      token.Token // the '{' token
 	Statements []Statement
 }
 
@@ -258,9 +258,9 @@ func (bs *BlockStatement) String() string {
 }
 
 type FunctionLiteral struct {
-	Token token.Token // the 'fn' token
+	Token      token.Token // the 'fn' token
 	Parameters []*Identifier
-	Body *BlockStatement
+	Body       *BlockStatement
 }
 
 func (fl *FunctionLiteral) expressionNode() {}
@@ -287,8 +287,8 @@ func (fl *FunctionLiteral) String() string {
 }
 
 type CallExpression struct {
-	Token token.Token // the '(' token
-	Function Expression // Identifier or FunctionLiteral
+	Token     token.Token // the '(' token
+	Function  Expression  // Identifier or FunctionLiteral
 	Arguments []Expression
 }
 

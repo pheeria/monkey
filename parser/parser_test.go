@@ -8,10 +8,10 @@ import (
 )
 
 func TestLetStatements(t *testing.T) {
-	tests := []struct{
-		input string
+	tests := []struct {
+		input              string
 		expectedIdentifier string
-		expectedValue interface{}
+		expectedValue      interface{}
 	}{
 		{"let x = 5;", "x", 5},
 		{"let y = true;", "y", true},
@@ -78,8 +78,8 @@ func checkParserErrors(t *testing.T, p *Parser) {
 }
 
 func TestReturnStatement(t *testing.T) {
-	tests := []struct{
-		input string
+	tests := []struct {
+		input         string
 		expectedValue interface{}
 	}{
 		{"return 5;", 5},
@@ -156,9 +156,9 @@ func TestIntegerLiteralExpression(t *testing.T) {
 
 func TestParsingPrefixExpressions(t *testing.T) {
 	prefixTests := []struct {
-		input        string
-		operator     string
-		value interface{}
+		input    string
+		operator string
+		value    interface{}
 	}{
 		{"!5", "!", 5},
 		{"-15", "-", 15},
@@ -220,9 +220,9 @@ func TestBooleanExpression(t *testing.T) {
 
 func TestParsingInfixExpressions(t *testing.T) {
 	infixTests := []struct {
-		input string
-		leftValue interface{}
-		operator string
+		input      string
+		leftValue  interface{}
+		operator   string
 		rightValue interface{}
 	}{
 		{"5 + 5", 5, "+", 5},
@@ -254,14 +254,14 @@ func TestParsingInfixExpressions(t *testing.T) {
 		}
 
 		if !testInfixExpression(t, stmt.Expression, tt.leftValue, tt.operator, tt.rightValue) {
-			return 
+			return
 		}
 	}
 }
 
 func TestOperatorPrecedenceParsing(t *testing.T) {
-	tests := []struct{
-		input string
+	tests := []struct {
+		input    string
 		expected string
 	}{
 		{"-a * b", "((-a) * b)"},
@@ -406,7 +406,7 @@ func TestIfExpression(t *testing.T) {
 	if !ok {
 		t.Fatalf("program.Statements[0] is not ast.ExpressionStatement. got=%T", program.Statements[0])
 	}
-	
+
 	exp, ok := stmt.Expression.(*ast.IfExpression)
 	if !ok {
 		t.Fatalf("stmt.Expression is not ast.IfExpression. got=%T", stmt.Expression)
@@ -417,7 +417,7 @@ func TestIfExpression(t *testing.T) {
 	if len(exp.Consequence.Statements) != 1 {
 		t.Errorf("consequence is not 1 statements. got=%d\n", len(exp.Consequence.Statements))
 	}
-	
+
 	consequence, ok := exp.Consequence.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
 		t.Fatalf("Statements[0] is not ast.ExpressionStatement. got=%T", exp.Consequence.Statements[0])
@@ -447,7 +447,7 @@ func TestIfElseExpression(t *testing.T) {
 	if !ok {
 		t.Fatalf("program.Statements[0] is not ast.ExpressionStatement. got=%T", program.Statements[0])
 	}
-	
+
 	exp, ok := stmt.Expression.(*ast.IfExpression)
 	if !ok {
 		t.Fatalf("stmt.Expression is not ast.IfExpression. got=%T", stmt.Expression)
@@ -461,7 +461,7 @@ func TestIfElseExpression(t *testing.T) {
 	if len(exp.Alternative.Statements) != 1 {
 		t.Errorf("alternative is not 1 statements. got=%d\n", len(exp.Alternative.Statements))
 	}
-	
+
 	consequence, ok := exp.Consequence.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
 		t.Fatalf("Statements[0] is not ast.ExpressionStatement. got=%T", exp.Consequence.Statements[0])
@@ -518,8 +518,8 @@ func TestFunctionLiteralParsing(t *testing.T) {
 
 func TestFunctionParameterParsing(t *testing.T) {
 	tests := []struct {
-		input        string
-		expectedParams     []string
+		input          string
+		expectedParams []string
 	}{
 		{input: "fn() {};", expectedParams: []string{}},
 		{input: "fn(x) {};", expectedParams: []string{"x"}},
