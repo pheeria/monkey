@@ -13,6 +13,7 @@ const (
 	INTEGER_OBJ = "INTEGER"
 	STRING_OBJ = "STRING"
 	BOOLEAN_OBJ = "BOOLEAN"
+	BUILTIN_OBJ = "BUILTIN"
 	NULL_OBJ    = "NULL"
 	FUNCTION_OBJ    = "FUNCTION"
 	RETURN_VALUE_OBJ    = "RETURN_VALUE"
@@ -41,6 +42,13 @@ type Boolean struct {
 }
 func (b *Boolean) Type() ObjectType { return BOOLEAN_OBJ }
 func (b *Boolean) Inspect() string { return fmt.Sprintf("%t", b.Value) }
+
+type BuiltinFunction func(args ...Object) Object
+type Builtin struct {
+	Fn BuiltinFunction
+}
+func (b *Builtin) Type() ObjectType { return BUILTIN_OBJ }
+func (b *Builtin) Inspect() string { return "builtin function" }
 
 type Null struct {}
 func (n *Null) Type() ObjectType { return NULL_OBJ }
