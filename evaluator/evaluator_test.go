@@ -140,6 +140,7 @@ func TestBuiltinFunctions(t *testing.T) {
 		{`last([]);`, nil},
 		{`rest([1, 2 * 2, 3 + 3]);`, []int{4, 6}},
 		{`rest(rest(rest([1, 2 * 2, 3 + 3])));`, nil},
+		{`push([], 42);`, []int{42}},
 	}
 	for _, tt := range tests {
 		evaluated := testEval(tt.input)
