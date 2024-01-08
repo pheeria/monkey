@@ -138,6 +138,8 @@ func TestBuiltinFunctions(t *testing.T) {
 		{`first([]);`, nil},
 		{`last([1, 2 * 2, 3 + 3]);`, 6},
 		{`last([]);`, nil},
+		{`rest([1, 2 * 2, 3 + 3]);`, []int{4, 6}},
+		{`rest(rest(rest([1, 2 * 2, 3 + 3])));`, nil},
 	}
 	for _, tt := range tests {
 		evaluated := testEval(tt.input)
