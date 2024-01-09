@@ -30,6 +30,7 @@ const (
 	GT     = ">"
 
 	// Delimiters
+	COLON     = ":"
 	SEMICOLON = ";"
 	COMMA     = ","
 
