@@ -40,6 +40,23 @@ func TestArrayLiteral(t *testing.T) {
 	testIntegerObject(t, result.Elements[2], 6)
 }
 
+func TestHashLiteral(t *testing.T) {
+	input := `{true: 1, 42: 2 * 2, "hi": 3 + 3 }`
+	evaluated := testEval(input)
+	result, ok := evaluated.(*object.Array)
+	if !ok {
+		t.Fatalf("object is not Hash. got=%T (%+v)", evaluated, evaluated)
+	}
+
+	if len(result.Elements) != 3 {
+		t.Errorf("hash has wrong num of elements. got=%q", len(result.Elements))
+	}
+
+	testIntegerObject(t, result.Elements[0], 1)
+	testIntegerObject(t, result.Elements[1], 4)
+	testIntegerObject(t, result.Elements[2], 6)
+}
+
 func TestArrayIndexExpressions(t *testing.T) {
 	tests := []struct{
 		input string
